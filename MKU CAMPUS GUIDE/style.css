@@ -1,0 +1,305 @@
+:root {
+  --bg: #050b09;
+  --bg-soft: #0c1713;
+  --card: rgba(12, 23, 19, 0.78);
+  --card-border: rgba(110, 231, 183, 0.18);
+
+  --text: #f2fbf6;
+  --muted: #a2b9ad;
+
+  --accent: #6ee7b7;
+  --accent-2: #60a5fa;
+  --accent-warm: #fbbf24;
+
+  --shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+  --glow: 0 0 0 1px rgba(110, 231, 183, 0.15),
+          0 0 30px rgba(110, 231, 183, 0.08);
+}
+
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--text);
+
+  background:
+    radial-gradient(circle at top left, rgba(110, 231, 183, 0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.14), transparent 40%),
+    linear-gradient(180deg, var(--bg), #020605);
+}
+
+body {
+  padding: 28px;
+}
+
+/* LAYOUT */
+.app-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+}
+
+/* GLASS CARD BASE */
+.hero-copy,
+.hero-panel,
+.directory,
+.team-section {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-copy:hover,
+.hero-panel:hover,
+.directory:hover,
+.team-section:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glow), var(--shadow);
+}
+
+/* HERO TEXT */
+.hero-copy {
+  padding: 42px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 5.5vw, 5rem);
+  line-height: 0.95;
+  margin: 14px 0;
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 65ch;
+}
+
+/* SEARCH - “CAMPUS FINDER BAR” */
+.search-card {
+  margin-top: 28px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.search-card label {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.search-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+input {
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(5, 10, 8, 0.75);
+  color: var(--text);
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(110, 231, 183, 0.15);
+}
+
+/* BUTTON - “NAVIGATION ACTION” */
+button {
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #052014;
+
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* HERO PANEL (QUICK LINKS) */
+.hero-panel {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-badge {
+  background: rgba(110, 231, 183, 0.15);
+  color: var(--accent);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+/* QUICK LIST */
+.shortcut-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.shortcut-list li {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: 0.2s ease;
+}
+
+.shortcut-list li:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+/* DIRECTORY GRID - “CAMPUS PLACES” */
+.directory {
+  margin-top: 24px;
+  padding: 28px;
+}
+
+.cards-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* CARD = CAMPUS LOCATION */
+.card {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(110,231,183,0.12), transparent 60%);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.card h3 {
+  margin: 0 0 8px;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* TAG */
+.tag {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(110, 231, 183, 0.12);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* TEAM SECTION - “DEPARTMENTS / CLUBS” */
+.team-section {
+  margin-top: 24px;
+  padding: 28px;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.team-chip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(110, 231, 183, 0.12);
+  border: 1px solid rgba(110, 231, 183, 0.2);
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.team-chip:hover {
+  transform: scale(1.05);
+  background: rgba(110, 231, 183, 0.18);
+}
+
+/* EMPTY STATE */
+.empty-state {
+  color: var(--muted);
+  margin-top: 16px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    padding: 16px;
+  }
+
+  .hero-copy {
+    padding: 24px;
+  }
+
+  .search-row {
+    grid-template-columns: 1fr;
+  }
+}
